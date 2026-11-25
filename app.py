@@ -1,6 +1,6 @@
 """
 Nifty Premium ROC Acceleration Dashboard
-Web version — deployable on Streamlit Cloud
+Web version — high contrast
 """
 
 import streamlit as st
@@ -17,44 +17,54 @@ st.set_page_config(
 
 st.markdown("""
 <style>
+    .stApp {
+        background: #0e1117;
+        color: #fafafa;
+    }
     .signal-card {
-        background: white;
-        border: 1px solid #e0e0e0;
+        background: #1e1e1e;
+        border: 1px solid #333;
         border-radius: 12px;
-        border-left: 5px solid #1a7f37;
+        border-left: 5px solid #00c853;
         padding: 16px;
         margin: 10px 0;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        color: #fafafa;
     }
     .buy-badge {
-        background: #1a7f37;
-        color: white;
+        background: #00c853;
+        color: #000;
         padding: 4px 10px;
         border-radius: 6px;
         font-weight: bold;
         font-size: 13px;
     }
     .active-badge {
-        background: #e6f4ea;
-        color: #1a7f37;
+        background: #1b5e20;
+        color: #a5d6a7;
         padding: 4px 10px;
         border-radius: 12px;
         font-weight: bold;
     }
     .conf-badge {
-        background: #fff3cd;
-        color: #856404;
+        background: #f9a825;
+        color: #000;
         padding: 4px 10px;
         border-radius: 12px;
         font-weight: bold;
     }
     .level-box {
-        background: #fafafa;
+        background: #2a2a2a;
         border-radius: 8px;
         padding: 10px;
         text-align: center;
+        color: #fafafa;
     }
-    .stApp { background: #f5f7fa; }
+    h1, h2, h3, .stMarkdown, p, span, div {
+        color: #fafafa !important;
+    }
+    .stSuccess, .stInfo, .stWarning {
+        color: #000 !important;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -117,45 +127,45 @@ if st.session_state.signal:
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
             <div>
                 <span class="buy-badge">↗ BUY_CE</span>
-                <strong style="font-size:18px; margin-left:10px;">{sig['instrument']}</strong>
+                <strong style="font-size:18px; margin-left:10px; color:#fff;">{sig['instrument']}</strong>
             </div>
             <div>
                 <span class="active-badge">● LIVE</span>
                 <span class="conf-badge">{sig['confidence']}%</span>
             </div>
         </div>
-        <div style="margin:6px 0; color:#666; background:#f5f5f5; display:inline-block; padding:2px 8px; border-radius:4px;">
+        <div style="margin:6px 0; color:#ccc; background:#333; display:inline-block; padding:2px 8px; border-radius:4px;">
             {sig['expiry']}
         </div>
-        <div style="margin:10px 0; font-weight:bold;">
+        <div style="margin:10px 0; font-weight:bold; color:#fff;">
             ✦ S16: Premium ROC Acceleration Burst
-            <span style="float:right; background:#fff; border:1px solid #ddd; padding:4px 10px; border-radius:6px; font-weight:normal;">
+            <span style="float:right; background:#333; border:1px solid #555; padding:4px 10px; border-radius:6px; font-weight:normal; color:#fff;">
                 ⏱ {sig['time']}
             </span>
         </div>
         <div style="display:flex; gap:12px; margin:12px 0;">
             <div class="level-box" style="flex:1;">
-                <div style="color:#888; font-size:12px;">ENTRY</div>
-                <div style="font-size:18px; font-weight:bold;">₹{sig['entry']:.2f}</div>
+                <div style="color:#aaa; font-size:12px;">ENTRY</div>
+                <div style="font-size:18px; font-weight:bold; color:#fff;">₹{sig['entry']:.2f}</div>
             </div>
             <div class="level-box" style="flex:1;">
-                <div style="color:#888; font-size:12px;">STOP LOSS</div>
-                <div style="font-size:18px; font-weight:bold; color:#d32f2f;">₹{sig['sl']:.2f}</div>
+                <div style="color:#aaa; font-size:12px;">STOP LOSS</div>
+                <div style="font-size:18px; font-weight:bold; color:#ff5252;">₹{sig['sl']:.2f}</div>
             </div>
             <div class="level-box" style="flex:1;">
-                <div style="color:#888; font-size:12px;">TARGET 1</div>
-                <div style="font-size:18px; font-weight:bold; color:#1a7f37;">₹{sig['target']:.2f}</div>
+                <div style="color:#aaa; font-size:12px;">TARGET 1</div>
+                <div style="font-size:18px; font-weight:bold; color:#69f0ae;">₹{sig['target']:.2f}</div>
             </div>
         </div>
         <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
-            <span style="background:#e3f2fd; color:#1565c0; padding:6px 12px; border-radius:16px; font-weight:bold;">
+            <span style="background:#1565c0; color:#fff; padding:6px 12px; border-radius:16px; font-weight:bold;">
                 ● 6 Confirmations
             </span>
-            <span style="background:#e6f4ea; color:#1a7f37; padding:4px 10px; border-radius:6px; font-weight:bold;">
+            <span style="background:#1b5e20; color:#a5d6a7; padding:4px 10px; border-radius:6px; font-weight:bold;">
                 LTP ₹{sig['ltp']:.2f} ({change:+.1f}%)
             </span>
         </div>
-        <div style="color:#666; font-size:13px; margin-top:6px;">
+        <div style="color:#aaa; font-size:13px; margin-top:6px;">
             (S16 + S03 + S14 + S10 + S15 + S23)
         </div>
     </div>
